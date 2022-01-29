@@ -1,10 +1,12 @@
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Layout } from '../components/Layout'
+import { GlobalStyle, theme } from '../theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <NextNProgress
         color="#29D"
         startPosition={0.3}
@@ -12,8 +14,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         height={3}
         showOnShallow={true}
       />
-      <Component {...pageProps} />
-    </ChakraProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <GlobalStyle />
+    </ChakraProvider >
   )
 }
 
